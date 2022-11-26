@@ -1,5 +1,6 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
+const newstart = document.getElementById('newstart');
 
 const ground = new Image();
 ground.src = 'img/ground.png';
@@ -40,9 +41,18 @@ function directon(event) {
 
 function eatTail(head, arr) {
     for (let i = 0; i < arr.length; i++) {
-        if(head.x == arr[i].x && head.y == arr[i].y)
-        clearInterval(game);
+        if (head.x == arr[i].x && head.y == arr[i].y) {
+            clearInterval(game);
+            restartGame();
+        }
     }
+}
+
+function restartGame() {
+    newstart.classList.remove('hidden');
+    newstart.addEventListener('click', function () {
+        window.location.reload();
+    });
 }
 
 function drawGame() {
@@ -72,8 +82,10 @@ function drawGame() {
         snake.pop();
     }
 
-    if(snakeX < box || snakeX > box * 17 || snakeY < box * 3 || snakeY > box * 17)
-    clearInterval(game);
+    if (snakeX < box || snakeX > box * 17 || snakeY < box * 3 || snakeY > box * 17) {
+        clearInterval(game);
+        restartGame();
+    }
 
     if (dir == 'left') snakeX -= box;
     if (dir == 'right') snakeX += box;
