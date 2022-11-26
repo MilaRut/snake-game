@@ -39,6 +39,13 @@ function directon(event) {
     }
 };
 
+function restartGame() {
+    newstart.classList.remove('hidden');
+    newstart.addEventListener('click', function () {
+        window.location.reload();
+    });
+}
+
 function eatTail(head, arr) {
     for (let i = 0; i < arr.length; i++) {
         if (head.x == arr[i].x && head.y == arr[i].y) {
@@ -46,13 +53,6 @@ function eatTail(head, arr) {
             restartGame();
         }
     }
-}
-
-function restartGame() {
-    newstart.classList.remove('hidden');
-    newstart.addEventListener('click', function () {
-        window.location.reload();
-    });
 }
 
 function drawGame() {
